@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Navette - Loïs Destatte</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="/images/sfavicon.svg">
+</head>
+<body>
+  <header class="header">
+    <nav class="container nav">
+      <a href="../index.html" class="nav-logo">LOÏS DESTATTE</a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">PORTFOLIO</a>
+        <a href="../competences.html" class="nav-link">COMPÉTENCES</a>
+        <a href="../a-propos.html" class="nav-link">À PROPOS</a>
+        <a href="../tarifs.html" class="nav-link">TARIFS</a>
+        <a href="../contact.html" class="nav-link">CONTACT</a>
+      </div>
+      <button class="mobile-menu-button" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu">
+    <div class="mobile-menu-links">
+      <a href="../index.html" class="mobile-link">PORTFOLIO</a>
+      <a href="../competences.html" class="mobile-link">COMPÉTENCES</a>
+      <a href="../a-propos.html" class="mobile-link">À PROPOS</a>
+      <a href="../tarifs.html" class="mobile-link">TARIFS</a>
+      <a href="../contact.html" class="mobile-link">CONTACT</a>
+    </div>
+  </div>
+
+  <main class="main">
+    <div class="project-detail">
+      <div class="container">
+        <div class="project-info">
+          <div>
+            <div class="project-section">
+              <h2>PROJET:</h2>
+              <p>La Navette</p>
+            </div>
+            <div class="project-section">
+              <h2>CATÉGORIE:</h2>
+              <p>Identité visuelle/Design Social</p>
+            </div>
+            <div class="project-section">
+              <h2>ANNÉE:</h2>
+              <p>2024</p>
+            </div>
+          </div>
+          <div class="project-section">
+            <h2>CONTEXTE:</h2>
+            <p>La Navette est un projet social visant à créer du lien entre les différentes communautés à travers des activités créatives et culturelles.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="project-images">
+        <div class="portfolio-item">
+          <img src="https://i.postimg.cc/4xkpdKmx/illus.png" 
+               alt="La Navette" 
+               class="portfolio-image object-cover">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Mobile menu functionality
+    const menuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      const svg = menuButton.querySelector('svg');
+      if (mobileMenu.classList.contains('open')) {
+        svg.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+      } else {
+        svg.innerHTML = '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
+      }
+    });
+  </script>
+</body>
+</html>

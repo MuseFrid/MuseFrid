@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compétences - Loïs Destatte</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="images/sfavicon.svg">
+</head>
+<body>
+  <header class="header">
+    <nav class="container nav">
+      <a href="index.html" class="nav-logo">LOÏS DESTATTE</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">PORTFOLIO</a>
+        <a href="competences.html" class="nav-link">COMPÉTENCES</a>
+        <a href="a-propos.html" class="nav-link">À PROPOS</a>
+        <a href="tarifs.html" class="nav-link">TARIFS</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
+      </div>
+      <button class="mobile-menu-button" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu">
+    <div class="mobile-menu-links">
+      <a href="index.html" class="mobile-link">PORTFOLIO</a>
+      <a href="competences.html" class="mobile-link">COMPÉTENCES</a>
+      <a href="a-propos.html" class="mobile-link">À PROPOS</a>
+      <a href="tarifs.html" class="mobile-link">TARIFS</a>
+      <a href="contact.html" class="mobile-link">CONTACT</a>
+    </div>
+  </div>
+
+  <main class="main">
+    <div class="container">
+      
+      <div class="skills-grid">
+       
+        <a href="competences/photographie.html" class="skill-card animate-stagger-2">
+          <div class="skill-image-container">
+            <img src="https://i.postimg.cc/9MXq4vHJ/IMG-5625.jpg" 
+                 alt="Photographie" 
+                 class="skill-image">
+          </div>
+          <div class="skill-content">
+            <h3 class="skill-title">Photographie</h3>
+            <p class="skill-description">Photographie événementielle, portrait, packshot, streetphoto</p>
+          </div>
+        </a>
+
+        <a href="competences/illustration.html" class="skill-card animate-stagger-3">
+          <div class="skill-image-container">
+            <img src="https://i.postimg.cc/xjMXpYyJ/eeee-Plan-de-travail-1.png" 
+                 alt="Illustration" 
+                 class="skill-image">
+          </div>
+          <div class="skill-content">
+            <h3 class="skill-title">Illustration</h3>
+            <p class="skill-description">Illustration digitale et traditionnelle, character design</p>
+          </div>
+        </a>
+        <a href="competences/video.html" class="skill-card animate-stagger-1">
+          <div class="skill-image-container">
+            <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&q=80&w=2000" 
+                 alt="Vidéo" 
+                 class="skill-image">
+          </div>
+          <div class="skill-content">
+            <h3 class="skill-title">Vidéo</h3>
+            <p class="skill-description">Motion design, montage vidéo, animation 2D/3D</p>
+          </div>
+        </a>
+        <a href="competences/fresque.html" class="skill-card animate-stagger-1">
+          <div class="skill-image-container">
+            <img src="https://i.postimg.cc/4xTqvv4H/3c355e4c802812f2388a3b78f44624f4.jpg" 
+                 alt="Fresque murale" 
+                 class="skill-image">
+          </div>
+          <div class="skill-content">
+            <h3 class="skill-title">Fresque murale</h3>
+            <p class="skill-description">Fresques intérieures et extérieures, design mural</p>
+          </div>
+        </a>
+
+        <a href="competences/gravure.html" class="skill-card animate-stagger-2">
+          <div class="skill-image-container">
+            <img src="https://i.postimg.cc/DZVxFnWJ/6cbfa92a37834ea3c92dc6a0988a9d27.jpg" 
+                 alt="Gravure" 
+                 class="skill-image">
+          </div>
+          <div class="skill-content">
+            <h3 class="skill-title">Gravure </h3>
+            <p class="skill-description">Linogravure, Tetrapack</p>
+          </div>
+        </a>
+
+        <a href="competences/gravure.html" class="skill-card animate-stagger-2">
+          <div class="skill-image-container">
+            <img src="https://i.postimg.cc/QCKN7g8n/Plan-de-travail-1.png" 
+                 alt="Gravure" 
+                 class="skill-image">
+          </div>
+          <div class="skill-content">
+            <h3 class="skill-title">Sérigraphie</h3>
+            <p class="skill-description">Sérigraphie, impression papiers / textile</p>
+          </div>
+        </a>
+
+        <a href="competences/risographie.html" class="skill-card animate-stagger-3">
+          <div class="skill-image-container">
+            <img src="https://i.postimg.cc/dVyWfh3P/85537831f9739992c6c4a46b70e95374.jpg" 
+                 alt="Risographie" 
+                 class="skill-image">
+          </div>
+          <div class="skill-content">
+            <h3 class="skill-title">Risographie</h3>
+            <p class="skill-description">Impression risographie, édition limitée</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Mobile menu functionality
+    const menuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      const svg = menuButton.querySelector('svg');
+      if (mobileMenu.classList.contains('open')) {
+        svg.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+      } else {
+        svg.innerHTML = '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos - Loïs Destatte</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="images/sfavicon.svg">
+</head>
+<body>
+  <header class="header">
+    <nav class="container nav">
+      <a href="index.html" class="nav-logo">LOÏS DESTATTE</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">PORTFOLIO</a>
+        <a href="competences.html" class="nav-link">COMPÉTENCES</a>
+        <a href="a-propos.html" class="nav-link">À PROPOS</a>
+        <a href="tarifs.html" class="nav-link">TARIFS</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
+      </div>
+      <button class="mobile-menu-button" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu">
+    <div class="mobile-menu-links">
+      <a href="index.html" class="mobile-link">PORTFOLIO</a>
+      <a href="competences.html" class="mobile-link">COMPÉTENCES</a>
+      <a href="a-propos.html" class="mobile-link">À PROPOS</a>
+      <a href="tarifs.html" class="mobile-link">TARIFS</a>
+      <a href="contact.html" class="mobile-link">CONTACT</a>
+    </div>
+  </div>
+
+  <main class="main">
+    <div class="container about-container">
+      <div class="about-content animate-fade-in">
+        <div class="about-intro">
+          <h1>Hello,</h1>
+          <p>Je suis Loïs Destatte, un graphiste belge basé à Liège. :-)<br>
+             Je me considère comme un couteau Suisse, j'ai pleins de compétences et j'adore les nouveaux projets.</p>
+          <p>N'hésitez pas à <a href="contact.html" class="text-link">me contacter</a> pour tout type de travail graphique!</p>
+        </div>
+
+        <div class="about-sections">
+          <div class="accordion-item">
+            <button class="accordion-button">
+              <span>Mes études</span>
+              <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="accordion-content">
+              <p>- Prépa Universidad Vasco de Quiroga - La plus grande de l'état de Morelia, au Michoacan </p> 
+              <br>
+              <p>- Ecole Supérieur des Arts de Saint-Luc à Liège - Communication Visuelle et Graphique - Diplome Bachelier - 2024</p>
+              <br>
+              <p>- Master 1 Communication Visuelle et Graphique - Spécialisation Design Social et Numérique - 2025 </p>
+              <br>
+              <p>- Aggrégation - 2027 ??</p>
+              <br>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-button">
+              <span>Mes stages</span>
+              <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="accordion-content">
+              <p>- Centre Culturelle de Nismes - 2024</p>
+              <br>
+              <p>- Atelier Alest - Graphisme / Sérigraphie / Réinsertion proffesionelle de la Santé mentale - 2025</p>
+              <br>
+              
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-button">
+              <span>Awards</span>
+              <svg class="chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="accordion-content">
+              <p>- Meilleur Logo pour le Festival de la BD à Couvin - 2017</p>
+              <br>
+              <p>- Identité Dance Effect - Mexico - 2021 </p>
+              <br>
+              <p>- Kotry Koffi - Jury- Création d'une marque de biscuits - Liège - 2024</p>
+              <br>
+              <p>- VenturLab - Projet Culturelle et divertissante sur la Meuse - 2025</p>
+              <br>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-download">
+          <a href="images/cv_lois_destatte.pdf" download class="cv-button">
+            CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Mobile menu functionality
+    const menuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      const svg = menuButton.querySelector('svg');
+      if (mobileMenu.classList.contains('open')) {
+        svg.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+      } else {
+        svg.innerHTML = '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
+      }
+    });
+
+    // Accordion functionality
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+    
+    accordionButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const chevron = button.querySelector('.chevron');
+        
+        button.classList.toggle('active');
+        chevron.style.transform = button.classList.contains('active') ? 'rotate(180deg)' : '';
+        
+        if (button.classList.contains('active')) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+        } else {
+          content.style.maxHeight = '0';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarifs - Loïs Destatte</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="images/sfavicon.svg">
+</head>
+<body>
+  <header class="header">
+    <nav class="container nav">
+      <a href="index.html" class="nav-logo">LOÏS DESTATTE</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">PORTFOLIO</a>
+        <a href="competences.html" class="nav-link">COMPÉTENCES</a>
+        <a href="a-propos.html" class="nav-link">À PROPOS</a>
+        <a href="tarifs.html" class="nav-link">TARIFS</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
+      </div>
+      <button class="mobile-menu-button" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu">
+    <div class="mobile-menu-links">
+      <a href="index.html" class="mobile-link">PORTFOLIO</a>
+      <a href="competences.html" class="mobile-link">COMPÉTENCES</a>
+      <a href="a-propos.html" class="mobile-link">À PROPOS</a>
+      <a href="tarifs.html" class="mobile-link">TARIFS</a>
+      <a href="contact.html" class="mobile-link">CONTACT</a>
+    </div>
+  </div>
+
+  <main class="main">
+    <div class="container pricing-container animate-fade-in">
+      <h1 class="page-title">Tarifs</h1>
+      
+      <div class="pricing-sections">
+        <section class="pricing-section">
+          <h2 class="section-title">Design Graphique</h2>
+          <div class="pricing-cards">
+            <div class="pricing-card">
+              <div class="pricing-card-header">
+                <h3>Identité visuelle</h3>
+                <p class="price">Sur devis</p>
+              </div>
+              <p class="description">Logo, charte graphique, supports de communication</p>
+            </div>
+            
+            <div class="pricing-card">
+              <div class="pricing-card-header">
+                <h3>Supports imprimés</h3>
+                <p class="price">Sur devis</p>
+              </div>
+              <p class="description">Flyers, affiches, cartes de visite, brochures</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="pricing-section">
+          <h2 class="section-title">Illustration</h2>
+          <div class="pricing-cards">
+            <div class="pricing-card">
+              <div class="pricing-card-header">
+                <h3>Illustration personnalisée</h3>
+                <p class="price">Sur devis</p>
+              </div>
+              <p class="description">Illustration digitale ou traditionnelle</p>
+            </div>
+            
+            <div class="pricing-card">
+              <div class="pricing-card-header">
+                <h3>Série d'illustrations</h3>
+                <p class="price">Sur devis</p>
+              </div>
+              <p class="description">3-5 illustrations dans le même style</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="pricing-section">
+          <h2 class="section-title">Fresque Murale</h2>
+          <div class="pricing-cards">
+            <div class="pricing-card">
+              <div class="pricing-card-header">
+                <h3>Fresque intérieure</h3>
+                <p class="price">Sur devis</p>
+              </div>
+              <p class="description">Prix au m²</p>
+            </div>
+            
+            <div class="pricing-card">
+              <div class="pricing-card-header">
+                <h3>Fresque extérieure</h3>
+                <p class="price">Sur devis</p>
+              </div>
+              <p class="description">Prix au m²</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="contact-cta">
+        <p>Vous avez un projet spécifique en tête ?</p>
+        <a href="contact.html" class="cta-button">Contactez-moi</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Mobile menu functionality
+    const menuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      const svg = menuButton.querySelector('svg');
+      if (mobileMenu.classList.contains('open')) {
+        svg.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+      } else {
+        svg.innerHTML = '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Loïs Destatte</title>
+  
+  <!-- Font -->
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,400,700&display=swap" rel="stylesheet">
+  
+  <!-- React et autres dépendances -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.production.min.js"></script>
+  <script src="https://unpkg.com/lucide-react@0.344.0/dist/umd/lucide-react.min.js"></script>
+  
+  <!-- Styles -->
+  <style>
+    /* Base styles */
+    *, ::before, ::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'General Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+      z-index: 50;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile menu */
+    .mobile-menu-button {
+      display: block;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+      .mobile-menu-button {
+        display: none;
+      }
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 73px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      padding: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    /* Main content */
+    .main {
+      padding-top: 6rem;
+    }
+
+    /* Portfolio grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      padding: 3rem 0;
+    }
+
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portfolio-image {
+      aspect-ratio: 4/3;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .portfolio-item:hover .portfolio-image {
+      transform: scale(1.05);
+    }
+
+    .portfolio-title {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+    }
+
+    /* Project detail */
+    .project-detail {
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      padding: 2rem 0;
+    }
+
+    .project-info {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .project-info {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .project-images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    /* Contact section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      padding: 3rem 0;
+    }
+
+    .contact-card {
+      aspect-ratio: 1;
+      border: 1px solid black;
+      border-radius: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      background: black;
+      color: white;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .animate-stagger-1 { animation-delay: 0.2s; }
+    .animate-stagger-2 { animation-delay: 0.4s; }
+    .animate-stagger-3 { animation-delay: 0.6s; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script>
+    const { useState, useEffect } = React;
+    const { BrowserRouter, Routes, Route, Link, useParams } = ReactRouterDOM;
+    const { Globe, Menu, X, Instagram, Mail, Bean: BehanceIcon } = lucide;
+
+    // Data
+    const portfolioItems = [
+      {
+        id: "kultura",
+        title: "WEEK-END ANNIVERSAIRE DU KULTURA (8 ANS)  -   Identité visuelle  -   2025",
+        image: "https://images.squarespace-cdn.com/content/v1/652d5c7da6401a261aa0c6a9/1738592418871-OHMAODWT6RNBP67T8Q4I/8ans_ka-33-34.png",
+      },
+      {
+        id: "floralparty",
+        title: "LA NAVETTE  -   Identité visuelle/ Design Social",
+        image: "https://i.postimg.cc/4xkpdKmx/illus.png",
+      }
+    ];
+
+    const projectData = {
+      kultura: {
+        projet: "Week-end anniversaire du Kultura",
+        categorie: "Identité visuelle",
+        annee: "2025",
+        contexte: "Chaque année, à l'occasion de son anniversaire, le Kultura organise un week-end où quatre collectifs familiers du lieu prennent en charge la programmation de l'événement. Pour marquer cette édition des 8 ans, l'identité visuelle a été conçue autour de ce chiffre, servant de fil conducteur au concept.",
+        images: [
+          "https://images.squarespace-cdn.com/content/v1/652d5c7da6401a261aa0c6a9/1738592418871-OHMAODWT6RNBP67T8Q4I/8ans_ka-33-34.png",
+          "https://images.squarespace.cdn.com/content/v1/652d5c7da6401a261aa0c6a9/1736516634908-9A0RKJRRP87830GKRFFP/ka-17.png"
+        ]
+      },
+      floralparty: {
+        projet: "La Navette",
+        categorie: "Identité visuelle/ Design Social",
+        annee: "2024",
+        contexte: "La Navette est un projet social visant à créer du lien entre les différentes communautés à travers des activités créatives et culturelles.",
+        images: [
+          "https://i.postimg.cc/4xkpdKmx/illus.png"
+        ]
+      }
+    };
+
+    // Components
+    function App() {
+      const [currentLanguage, setCurrentLanguage] = useState('Français');
+      const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+      const navigation = [
+        { name: 'PORTFOLIO', href: '/' },
+        { name: 'COMPÉTENCES', href: '/competences' },
+        { name: 'À PROPOS', href: '/a-propos' },
+        { name: 'TARIFS', href: '/tarifs' },
+        { name: 'CONTACT', href: '/contact' }
+      ];
+
+      return React.createElement(BrowserRouter, null,
+        React.createElement('div', { className: 'min-h-screen bg-white' },
+          React.createElement('header', { className: 'header' },
+            React.createElement('nav', { className: 'container nav' },
+              React.createElement(Link, { to: '/', className: 'nav-logo' }, 'LOÏS DESTATTE'),
+              React.createElement('div', { className: 'nav-links' },
+                navigation.map(item =>
+                  React.createElement(Link, {
+                    key: item.name,
+                    to: item.href,
+                    className: 'nav-link'
+                  }, item.name)
+                ),
+                React.createElement('button', {
+                  onClick: () => setCurrentLanguage(
+                    currentLanguage === 'Français' ? 'English' : 'Français'
+                  ),
+                  className: 'nav-link'
+                }, [
+                  React.createElement(Globe, { className: 'inline-block mr-2' }),
+                  currentLanguage
+                ])
+              ),
+              React.createElement('button', {
+                className: 'mobile-menu-button',
+                onClick: () => setIsMenuOpen(!isMenuOpen)
+              },
+                isMenuOpen
+                  ? React.createElement(X, { className: 'h-6 w-6' })
+                  : React.createElement(Menu, { className: 'h-6 w-6' })
+              )
+            )
+          ),
+          React.createElement('div', {
+            className: `mobile-menu ${isMenuOpen ? 'open' : ''}`
+          },
+            React.createElement('div', { className: 'space-y-8' },
+              navigation.map(item =>
+                React.createElement(Link, {
+                  key: item.name,
+                  to: item.href,
+                  className: 'block text-2xl hover:underline',
+                  onClick: () => setIsMenuOpen(false)
+                }, item.name)
+              ),
+              React.createElement('button', {
+                onClick: () => {
+                  setCurrentLanguage(
+                    currentLanguage === 'Français' ? 'English' : 'Français'
+                  );
+                  setIsMenuOpen(false);
+                },
+                className: 'flex items-center gap-2 text-2xl'
+              }, [
+                React.createElement(Globe, { className: 'h-6 w-6' }),
+                currentLanguage
+              ])
+            )
+          ),
+          React.createElement('main', { className: 'main' },
+            React.createElement(Routes, null,
+              React.createElement(Route, { path: '/', element: React.createElement(Portfolio) }),
+              React.createElement(Route, { path: '/portfolio/:projectId', element: React.createElement(ProjectDetail) }),
+              React.createElement(Route, { path: '/contact', element: React.createElement(Contact) })
+            )
+          )
+        )
+      );
+    }
+
+    // Portfolio Component
+    function Portfolio() {
+      return React.createElement('div', { className: 'container' },
+        React.createElement('div', { className: 'portfolio-grid' },
+          portfolioItems.map((item, index) =>
+            React.createElement(Link, {
+              key: item.id,
+              to: `/portfolio/${item.id}`,
+              className: `portfolio-item animate-stagger-${(index % 3) + 1}`
+            }, [
+              React.createElement('div', { className: 'relative overflow-hidden' },
+                React.createElement('img', {
+                  src: item.image,
+                  alt: item.title,
+                  className: 'portfolio-image'
+                })
+              ),
+              React.createElement('h3', { className: 'portfolio-title' },
+                item.title
+              )
+            ])
+          )
+        )
+      );
+    }
+
+    // ProjectDetail Component
+    function ProjectDetail() {
+      const { projectId } = useParams();
+      const project = projectData[projectId];
+
+      useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+
+      if (!project) return null;
+
+      return React.createElement('div', { className: 'animate-fade-in' },
+        React.createElement('div', { className: 'project-detail' },
+          React.createElement('div', { className: 'container' },
+            React.createElement('div', { className: 'project-info' }, [
+              React.createElement('div', null, [
+                React.createElement('h2', null, 'PROJET:'),
+                React.createElement('p', null, project.projet),
+                React.createElement('h2', { className: 'mt-4' }, 'CATÉGORIE:'),
+                React.createElement('p', null, project.categorie),
+                React.createElement('h2', { className: 'mt-4' }, 'ANNÉE:'),
+                React.createElement('p', null, project.annee)
+              ]),
+              React.createElement('div', null, [
+                React.createElement('h2', null, 'CONTEXTE:'),
+                React.createElement('p', null, project.contexte)
+              ])
+            ])
+          )
+        ),
+        React.createElement('div', { className: 'container' },
+          React.createElement('div', { className: 'project-images' },
+            project.images.map((image, index) =>
+              React.createElement('div', {
+                key: index,
+                className: 'portfolio-item'
+              },
+                React.createElement('img', {
+                  src: image,
+                  alt: `${project.projet} ${index + 1}`,
+                  className: 'portfolio-image'
+                })
+              )
+            )
+          )
+        )
+      );
+    }
+
+    // Contact Component
+    function Contact() {
+      return React.createElement('div', { className: 'min-h-screen' },
+        React.createElement('div', { className: 'container' },
+          React.createElement('div', { className: 'contact-grid' }, [
+            React.createElement('a', {
+              href: 'https://instagram.com',
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              className: 'contact-card'
+            },
+              React.createElement('div', { className: 'text-center space-y-4' }, [
+                React.createElement(Instagram, { className: 'w-8 h-8 mx-auto' }),
+                React.createElement('p', null, 'INSTAGRAM')
+              ])
+            ),
+            React.createElement('a', {
+              href: 'https://behance.net',
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              className: 'contact-card'
+            },
+              React.createElement('div', { className: 'text-center space-y-4' }, [
+                React.createElement(BehanceIcon, { className: 'w-8 h-8 mx-auto' }),
+                React.createElement('p', null, 'BEHANCE')
+              ])
+            ),
+            React.createElement('a', {
+              href: 'mailto:lois.destatte@gmail.com',
+              className: 'contact-card'
+            },
+              React.createElement('div', { className: 'text-center space-y-4' }, [
+                React.createElement(Mail, { className: 'w-8 h-8 mx-auto' }),
+                React.createElement('p', null, 'MAIL')
+              ])
+            )
+          ])
+        )
+      );
+    }
+
+    // Render the app
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(React.createElement(React.StrictMode, null,
+      React.createElement(App)
+    ));
+  </script>
+</body>
+</html>
